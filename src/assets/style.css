@@ -1,0 +1,45 @@
+:root{
+    --header-height : 60px;
+    --max-width : 1536px;
+    --primary-color : #821315; 
+    --secondary-color : #361275;  
+    --cerise-red-50: #fef2f4;
+    --cerise-red-100: #fde6e9;
+    --cerise-red-200: #fbd0d9;
+    --cerise-red-300: #f7aab9;
+    --cerise-red-400: #f27a93;
+    --cerise-red-500: #e63f66;
+    --cerise-red-600: #d42a5b;
+    --cerise-red-700: #b21e4b;
+    --cerise-red-800: #951c45;
+    --cerise-red-900: #801b40;
+    --cerise-red-950: #470a1f;
+}
+
+
+/* .ShowTimes .ant-tabs-nav-wrap{
+    justify-content: space-evenly;
+} */
+
+.ShowTimes .ant-tabs-nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.ShowTimes .ant-tabs-tab {
+    width: 50%;
+    justify-content: center;
+}
+.manHinh {
+    margin-top: 30px;
+    padding: 10px 0;
+    background-image: linear-gradient(
+        109.6deg,
+        rgba(156, 252, 248, 1) 11.2%,
+        rgba(110, 123, 251, 1) 91.1%
+    );
+    border-radius: 100px 100px 0 0;
+    box-shadow: 1px 12px 25px 3px gray;
+}
+
