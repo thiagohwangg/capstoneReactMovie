@@ -1,10 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { Button, Avatar, Popover } from "components";
+import { Avatar, Popover } from "components";
 import { PATH } from "constant";
 import { useAuth } from "hooks";
 import { quanLyNguoiDungActions, useAppDispatch } from "store";
 import { useEffect, useState } from "react";
+import { Drawer, Button } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
 export const Header = () => {
@@ -13,7 +15,7 @@ export const Header = () => {
   const { accessToken, user } = useAuth();
   const [scroll, setScroll] = useState<boolean>(false);
   const handleScroll = () => {
-    if (window.pageYOffset > 20) {
+    if (typeof window !== "undefined" && window.pageYOffset > 20) {
       setScroll(true);
       return;
     }
@@ -25,15 +27,24 @@ export const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const [drawerVisible, setDrawerVisible] = useState(false);
+
+  const showDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const onClose = () => {
+    setDrawerVisible(false);
+  };
   return (
     <Container
       className={cn({
         "header-fixed": scroll,
       })}
     >
-      <div className="header-content">
+      <div className="container mx-auto flex flex-row sm:flex-row items-center justify-between">
         <h1
-          className="brand"
+          className="font-700 text-30 cursor-pointer"
           onClick={() => {
             navigate("/");
           }}
@@ -41,8 +52,8 @@ export const Header = () => {
           <span className="text-[var(--primary-color)]">CYBER </span>
           MOVIE
         </h1>
-        <div className="flex items-center gap-[60px]">
-          <nav>
+        <div className="flex flex-row sm:flex-row items-center gap-4 sm:gap-[60px]">
+          <nav className="flex flex-row sm:flex-row gap-10 sm:gap-16 ">
             <NavLink to="/">TRANG CHỦ</NavLink>
             <NavLink to={PATH.showTimes}>LỊCH CHIẾU</NavLink>
             <NavLink to="">PHIM</NavLink>
@@ -55,6 +66,35 @@ export const Header = () => {
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </Button>
                     </div> */}
+          <Button className="fix ml-3" type="primary" onClick={showDrawer}>
+            <MenuOutlined />
+          </Button>
+          <Drawer
+            title="Menu"
+            placement="right"
+            closable={false}
+            onClose={onClose}
+            visible={drawerVisible}
+            className="my-drawer"
+          >
+            <nav className="flex flex-col gap-4 font-600 text-20">
+              <NavLink to="/" className="nav-link">
+                Trang chủ
+              </NavLink>
+              <NavLink to={PATH.showTimes} className="nav-link">
+                Lịch chiếu
+              </NavLink>
+              <NavLink to="" className="nav-link">
+                Phim
+              </NavLink>
+              <NavLink to={PATH.movieBooking} className="nav-link">
+                Rạp
+              </NavLink>
+              <NavLink to="" className="nav-link">
+                Tin tức
+              </NavLink>
+            </nav>
+          </Drawer>
           <div>
             {!accessToken && (
               <p className="flex items-center font-600">
@@ -98,6 +138,7 @@ export const Header = () => {
                       danger
                       onClick={() => {
                         dispatch(quanLyNguoiDungActions.logOut());
+                        navigate("/");
                       }}
                     >
                       <i className="mr-8 fa-solid fa-arrow-right-from-bracket"></i>
@@ -128,70 +169,43 @@ const Container = styled.header`
     position: fixed;
     width: 100%;
     background-color: white;
-    z-index: 999;
+    z-index: 10;
     top: 0;
     left: 0;
   }
-
-  .header-content {
-    padding: 0 40px;
-    max-width: var(--max-width);
-    height: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .brand {
-      font-weight: 700;
-      font-size: 30px;
+  nav {
+    a {
+      font-weight: 500;
+      &::after {
+        content: "";
+        display: block;
+        height: 3px;
+        background: var(--primary-color);
+        width: 0;
+        transition: all 0.3s ease-in-out;
+      }
       &:hover {
-        cursor: pointer;
-      }
-    }
-    nav {
-      display: flex;
-      gap: 60px;
-      a {
-        font-weight: 500;
         &::after {
-          content: "";
-          display: block;
-          height: 3px;
-          background: var(--primary-color);
-          width: 0;
-          transition: all 0.3s ease-in-out;
-        }
-        &:hover {
-          &::after {
-            width: 100%;
-          }
+          width: 100%;
         }
       }
     }
-
-    .search {
-      border: 1px solid #111;
-      display: flex;
-      align-items: center;
-      border-radius: 6px;
-      overflow: hidden;
-      button {
-        height: 46px !important;
-        border: none;
-        border-radius: initial;
-        background: #111;
-        color: #fff;
-        &:hover {
-          color: var(--primary-color) !important;
-        }
-      }
+  }
+  @media (max-width: 640px) {
+    nav {
+      display: none;
     }
-
-    input {
-      margin-top: 0;
-      background: transparent;
-      color: #111;
-      outline: none;
+  }
+  @media (min-width: 640px) {
+    .fix {
+      display: none !important;
     }
+  }
+  .my-drawer .nav-link {
+    color: black !important;
+  }
+
+  .my-drawer .nav-link:hover {
+    color: red !important; /* Thay 'red' bằng màu sắc bạn muốn khi di chuột qua */
   }
 `;

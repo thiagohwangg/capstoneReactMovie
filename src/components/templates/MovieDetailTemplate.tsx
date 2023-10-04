@@ -70,7 +70,7 @@ export const MovieDetailTemplate = () => {
         <div>
             <div className="relative">
                 <div
-                    className="bg-[url(https://cdn.sforum.vn/sforum/wp-content/uploads/2022/03/3575769.webp)] bg-no-repeat bg-cover absolute top-0 left-0 w-full h-full"
+                    className="bg-[url(https://cdn.sforum.vn/sforum/wp-content/uploads/2022/03/3575769.webp)] bg-no-repeat bg-cover absolute z-2 top-0 left-0 w-full h-full"
                     style={{
                         filter: "brightness(50%)", // Giảm độ sáng của hình ảnh
                     }}
