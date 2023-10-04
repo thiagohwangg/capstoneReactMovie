@@ -34,7 +34,7 @@ export const ShowTimesTemplate = () => {
                                     <h3 className="text-3xl font-500 dark:text-white mb-3">
                                         {c.tenPhim}
                                     </h3>
-                                    <div className="grid grid-cols-5 gap-10">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                                         {c.lstLichChieuTheoPhim.map((x) => {
                                             const path = generatePath(PATH.movieBooking, {
                                                 id: x.maLichChieu,

@@ -70,7 +70,7 @@ export const HomeTemplate = () => {
                             key: "MovieList",
                             label: "Danh sách phim",
                             children: (
-                                <div className="grid grid-cols-5">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                     {movieList?.map((movie) => (
                                         <div
                                             className="mt-30"
@@ -122,7 +122,7 @@ export const HomeTemplate = () => {
                             key: "NowShowing",
                             label: "Phim Đang Chiếu",
                             children: (
-                                <div className="grid grid-cols-5">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                     {movieList?.map((movie) =>
                                         movie.dangChieu ? (
                                             <div
@@ -178,7 +178,7 @@ export const HomeTemplate = () => {
                             key: "UpComingMovie",
                             label: "Phim Sắp Chiếu",
                             children: (
-                                <div className="grid grid-cols-5">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                     {movieList?.map((movie) =>
                                         !movie.dangChieu ? (
                                             <div
