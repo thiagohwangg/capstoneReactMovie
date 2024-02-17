@@ -21,7 +21,7 @@ export const HomeTemplate = () => {
 
     useEffect(() => {
         dispatch(getCinemaListThunk());
-        dispatch(getMovieListThunk({ a: "GP08", b: "GP03" }));
+        dispatch(getMovieListThunk({ a: "GP01", b: "GP02" }));
         dispatch(getBannerListThunk());
         dispatch(getShowTimesListThunk());
     }, [dispatch]);
